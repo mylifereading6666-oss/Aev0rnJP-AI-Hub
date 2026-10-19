@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#080b12">
-<meta name="description" content="Aev0rnJP AI Hub — privacy-first, browser-based AI workspace.">
+<meta name="description" content="Aev0rnJP AI Hub — Wi-Fi cloud AI and browser-based workspace.">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" href="./icon.svg" type="image/svg+xml">
 <title>Aev0rnJP AI Hub</title>
@@ -29,18 +29,18 @@
 <main>
 <header class="top"><div><div class="eyebrow">LOCAL INTELLIGENCE / 01</div><h1 id="pageTitle">AI ワークスペース</h1><p id="pageSub">あなたの端末で動くAIを中心に、作業をひとつの場所へ。</p></div><div class="top-actions"><button class="btn ghost" id="installBtn" hidden>アプリをインストール</button><button class="btn" id="clearBtn">会話を消去</button></div></header>
 <section class="cards" aria-label="状態">
-<div class="metric"><div class="label">AI ENGINE</div><strong id="engineMetric">未起動</strong><small id="engineSub">端末内モデル</small></div>
+<div class="metric"><div class="label">AI ENGINE</div><strong id="engineMetric">未接続</strong><small id="engineSub">クラウドAI設定待ち</small></div>
 <div class="metric"><div class="label">CONNECTION</div><strong id="connectionMetric">確認中</strong><small>ネットワーク状態</small></div>
-<div class="metric"><div class="label">PRIVACY</div><strong>端末内優先</strong><small>自動送信する独自サーバーなし</small></div>
+<div class="metric"><div class="label">PRIVACY</div><strong id="privacyMetric">接続先を確認</strong><small>クラウド利用時は入力を送信</small></div>
 </section>
 
 <section id="view-chat" class="view">
 <div class="panel">
-<div class="panelhead"><div><h2>AI チャット</h2><p>端末内モデルを読み込み、文章作成・説明・アイデア整理などに使えます。</p></div><span class="status" id="modelStatus">モデル未起動</span></div>
-<div class="chatlog" id="chatlog" aria-live="polite"><div class="welcome"><div class="orb">✧</div><h3>何から始めますか？</h3><p>ローカルAIモデルを読み込むと、この端末上で会話できます。初回はモデルデータのダウンロードが必要です。</p><div class="row" style="justify-content:center;margin-top:16px"><button class="btn primary" id="loadModelBtn">AIモデルを読み込む</button><button class="btn" data-prompt="JavaScriptを学ぶための初心者向けロードマップを作ってください。">学習計画を作る</button></div></div></div>
-<div class="progress" id="loadProgress" hidden><span id="loadBar"></span></div><div id="loadMessage" class="hint" role="status"></div>
+<div class="panelhead"><div><h2>AI チャット</h2><p>Wi-Fi経由でクラウドAIに接続します。初回は下の「モデル・設定」でAIサーバーを登録してください。</p></div><span class="status" id="modelStatus">接続先未設定</span></div>
+<div class="chatlog" id="chatlog" aria-live="polite"><div class="welcome"><div class="orb">✧</div><h3>Wi-FiクラウドAI</h3><p>端末のGPUに依存せず会話できます。最初に「モデル・設定」でクラウドAIサーバーのURLを登録してください。</p><div class="row" style="justify-content:center;margin-top:16px"><button class="btn primary" data-view="settings">クラウドAIを設定</button><button class="btn" data-prompt="JavaScriptを学ぶための初心者向けロードマップを作ってください。">学習計画を作る</button></div></div></div>
+<div class="progress" id="loadProgress" hidden><span id="loadBar"></span></div><div id="loadMessage" class="hint" role="status">クラウドAIサーバーを登録すると、Wi-Fi経由で利用できます。</div>
 <form id="chatForm" class="composer"><textarea id="promptInput" placeholder="メッセージを入力…（Enterで送信 / Shift+Enterで改行）" aria-label="メッセージ"></textarea><button class="btn primary" id="sendBtn" type="submit">送信 ↗</button></form>
-<div class="hint">ローカルモデルは端末のメモリ・GPU・ブラウザーに左右されます。回答は誤ることがあります。個人情報や重要な判断は確認してください。</div>
+<div class="hint">クラウドAIでは入力したメッセージがAIサーバーへ送信されます。パスワード・住所などの機密情報は入力しないでください。回答は誤ることがあります。</div>
 </div>
 </section>
 
@@ -67,14 +67,16 @@
 </div></section>
 
 <section id="view-settings" class="view hidden">
-<div class="panel"><div class="panelhead"><div><h2>モデル・設定</h2><p>端末に合わせてモデルを選びます。モデルは初回読み込み時にダウンロードされ、通信量と保存容量を使います。</p></div></div>
-<div class="field"><label for="modelSelect">ローカルAIモデル</label><select id="modelSelect"><option value="Qwen2.5-1.5B-Instruct-q4f16_1-MLC">Qwen 2.5 1.5B Instruct（日本語優先・推奨）</option><option value="Qwen2.5-0.5B-Instruct-q4f16_1-MLC">Qwen 2.5 0.5B Instruct（軽量・低負荷）</option><option value="Llama-3.2-1B-Instruct-q4f16_1-MLC">Llama 3.2 1B Instruct（別モデル）</option></select></div>
-<div class="row"><button class="btn primary" id="settingsLoadBtn">モデルを読み込む</button><button class="btn" id="stopModelBtn">モデルを解放</button></div>
+<div class="panel"><div class="panelhead"><div><h2>モデル・設定</h2><p>Wi-Fiで利用するクラウドAIの接続先を設定します。GitHub PagesだけではAIサーバーを実行できないため、別途Cloudflare Workerの公開が必要です。</p></div></div>
+<div class="field"><label for="cloudEndpoint">クラウドAIサーバーURL</label><input id="cloudEndpoint" type="url" inputmode="url" placeholder="https://your-worker.your-subdomain.workers.dev/chat" autocomplete="url"></div><div class="row"><button class="btn primary" id="saveCloudBtn">接続先を保存</button><button class="btn" id="testCloudBtn">接続テスト</button></div><div id="cloudHelp" class="hint">まだWorkerを公開していない場合は、リポジトリの cloud-worker フォルダー内の手順を確認してください。APIキーはこの画面にもGitHubにも入力しません。</div>
+<div class="divider"></div>
+<details><summary style="cursor:pointer;color:var(--muted);font-size:12px;margin:16px 0">旧方式：端末内モデル（WebGPUが必要な場合あり）</summary><div class="field"><label for="modelSelect">ローカルAIモデル</label><select id="modelSelect"><option value="Qwen2.5-1.5B-Instruct-q4f16_1-MLC">Qwen 2.5 1.5B Instruct（日本語優先・推奨）</option><option value="Qwen2.5-0.5B-Instruct-q4f16_1-MLC">Qwen 2.5 0.5B Instruct（軽量・低負荷）</option><option value="Llama-3.2-1B-Instruct-q4f16_1-MLC">Llama 3.2 1B Instruct（別モデル）</option></select></div>
+<div class="row"><button class="btn primary" id="settingsLoadBtn">モデルを読み込む</button><button class="btn" id="stopModelBtn">モデルを解放</button></div></details>
 <div class="field"><label for="memoryToggle">会話履歴</label><div class="row"><input type="checkbox" id="memoryToggle" checked><span class="muted" style="font-size:12px">このブラウザーに会話を保存</span></div></div>
 <div class="row"><button class="btn" id="exportChatBtn">会話をJSONで保存</button><button class="btn" id="deleteChatBtn">保存済み会話を削除</button></div>
 </div>
 <div class="panel"><h2>端末の対応状況</h2><div id="capabilities" class="hint">確認中…</div><div class="note" style="margin-top:14px">WebGPU対応端末でも、GPUドライバーや利用可能メモリによりモデルが起動しない場合があります。対応しない場合はコード編集・ファイル閲覧・外部検索をご利用ください。</div></div>
-<div class="panel"><h2>プライバシーとオフライン</h2><p class="hint">独自サーバーは使用しません。AIモデルはWebLLMライブラリとモデル配信元からダウンロードされます。ブラウザー保存領域を消去すると履歴やキャッシュも失われることがあります。オフラインでは、キャッシュ済みの画面とローカル機能が中心となり、初回モデル取得・ウェブ検索は利用できません。</p></div>
+<div class="panel"><h2>プライバシーとオフライン</h2><p class="hint">クラウドAIでは会話内容が設定したWorkerを経由してAI事業者へ送信されます。秘密情報は入力しないでください。AIはWi-Fiなどのインターネット接続が必要です。オフラインではクラウドAIを利用できません。APIトークンはWorker側の秘密情報として保管し、公開JavaScriptへ埋め込まないでください。</p></div>
 </section>
 <div class="footer">Aev0rnJP AI Hub · Browser-first · No image generation · GitHub Pages compatible<br>AIモデル・外部ライブラリの利用条件は各提供元に従います。</div>
 </main>
@@ -84,7 +86,7 @@
 <script type="module">
 const $=id=>document.getElementById(id);
 let engine=null, cpuEngine=null, engineMode="", engineLoading=false, busy=false, currentFileText="", currentFileName="";
-let history=[];
+let history=[];\nconst cloudEndpointInput=$("cloudEndpoint");\nfunction getCloudEndpoint(){return (localStorage.getItem("aev0rn-cloud-endpoint")||"").trim()}\nfunction updateCloudState(){const ep=getCloudEndpoint();if(cloudEndpointInput)cloudEndpointInput.value=ep; if(ep){setStatus("クラウド設定済み","ready");$("engineSub").textContent="Wi-FiクラウドAI";$("privacyMetric").textContent="クラウド送信";$("loadMessage").textContent="接続先を保存済みです。チャットから利用できます。"}else{$("modelStatus").textContent="接続先未設定";$("modelStatus").className="status";$("engineMetric").textContent="未接続";$("engineSub").textContent="クラウドAI設定待ち";$("privacyMetric").textContent="接続先を確認"}}
 const titles={chat:["AI ワークスペース","あなたの端末で動くAIを中心に、作業をひとつの場所へ。"],code:["コードワークスペース","コードを編集し、保存し、AIと一緒に考える。"],files:["ファイル解析","ファイルを読み込み、内容を確認して質問する。"],search:["ウェブ検索","検索エンジンで最新情報を探す。"],settings:["モデル・設定","端末に合った実行環境とプライバシーを設定する。"]};
 function toast(s){const t=$("toast");t.textContent=s;t.classList.remove("hidden");clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.add("hidden"),3000)}
 function setStatus(s,kind=""){const e=$("modelStatus");e.textContent=s;e.className="status "+kind;$("engineMetric").textContent=s}
@@ -104,7 +106,7 @@ try{if(!navigator.gpu){setStatus("CPUモード","busy");$("loadMessage").textCon
 let webllm;try{webllm=await import("https://esm.run/@mlc-ai/web-llm")}catch(firstError){$("loadMessage").textContent="メイン配信元に接続できません。別の配信元を試しています…";webllm=await import("https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm/+esm")}const {CreateMLCEngine}=webllm;const model=$("modelSelect").value;$("loadMessage").textContent="選択モデルを準備しています。初回はダウンロードに時間がかかる場合があります。";engine=await CreateMLCEngine(model,{initProgressCallback:p=>{$("loadBar").style.width=Math.round((p.progress||0)*100)+"%";$("loadMessage").textContent=p.text||"モデルを準備中…"}});engineMode="webgpu";setStatus("準備完了","ready");$("engineSub").textContent=model;$("loadMessage").textContent="モデルの準備ができました。メッセージを送信できます。";$("loadProgress").hidden=true;toast("ローカルAIの準備ができました");return true}catch(e){engine=null;const gpuDetail=String(e?.message||e||"不明なエラー");setStatus("CPUモードへ切替中","busy");$("loadMessage").textContent="GPUでの起動に失敗しました。CPU対応モデルへ自動で切り替えています…";try{let transformers;try{transformers=await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2")}catch(firstError){transformers=await import("https://esm.run/@huggingface/transformers@3.7.2")}const {pipeline}=transformers;cpuEngine=await pipeline("text-generation","onnx-community/Qwen2.5-0.5B-Instruct",{dtype:"q4",device:"wasm",progress_callback:p=>{if(p.status==="progress"&&p.total)$("loadBar").style.width=Math.round(p.loaded/p.total*100)+"%";if(p.status==="progress")$("loadMessage").textContent="CPUモデルをダウンロード中… "+(p.file||"")}});engineMode="cpu";setStatus("準備完了（CPU）","ready");$("engineSub").textContent="Qwen 2.5 0.5B（CPU / 日本語優先）";$("loadMessage").textContent="GPU起動に失敗したため、CPUモードで準備しました。回答に時間がかかる場合があります。";$("loadProgress").hidden=true;toast("CPU対応AIの準備ができました");return true}catch(cpuError){cpuEngine=null;setStatus("起動失敗");const cpuDetail=String(cpuError?.message||cpuError||"不明なエラー");$("loadMessage").textContent="GPU起動エラー: "+gpuDetail+"\nCPU代替エラー: "+cpuDetail+"\nChrome最新版・安定したWi-Fi・空きメモリを確認してください。初回モデル取得には数百MB程度の通信量がかかることがあります。";$("loadProgress").hidden=true;toast("GPUとCPUの両方で起動できませんでした");return false}}finally{engineLoading=false;["loadModelBtn","settingsLoadBtn"].forEach(id=>$(id).disabled=false)}}
 $("loadModelBtn").addEventListener("click",loadModel);$("settingsLoadBtn").addEventListener("click",loadModel);
 $("stopModelBtn").addEventListener("click",async()=>{if(engine||cpuEngine){if(engine){try{await engine.unload()}catch{}}engine=null;cpuEngine=null;engineMode="";setStatus("未起動");$("engineSub").textContent="端末内モデル";toast("モデルを解放しました")}else toast("モデルは起動していません")});
-async function sendPrompt(text){text=text.trim();if(!text||busy)return;if(!engine&&!cpuEngine){const ok=await loadModel();if(!ok)return}busy=true;$("sendBtn").disabled=true;addMessage("user",text);$("promptInput").value="";setStatus("回答中","busy");try{const messages=[{role:"system",content:"あなたはAev0rnJP AI Hubの日本語優先アシスタントです。特に指定がなければ、自然で読みやすい日本語で回答してください。ユーザーが別の言語を指定した場合はその言語を使ってください。明確かつ正確に回答し、不確かなことは不確かだと明示してください。"} ,...history.slice(-16).map(m=>({role:m.role,content:m.content}))];let answer;if(cpuEngine){const out=await cpuEngine(messages,{max_new_tokens:500,do_sample:true,temperature:.7});const generated=out?.[0]?.generated_text;answer=Array.isArray(generated)?(generated.filter(m=>m.role==="assistant").slice(-1)[0]?.content||""):typeof generated==="string"?generated:""}else{const result=await engine.chat.completions.create({messages,temperature:.7,max_tokens:900});answer=result.choices?.[0]?.message?.content||""}answer=answer||"回答を生成できませんでした。";addMessage("assistant",answer);setStatus("準備完了","ready")}catch(e){addMessage("assistant","回答生成中にエラーが発生しました: "+(e?.message||e));setStatus("エラー")}finally{busy=false;$("sendBtn").disabled=false}}
+async function sendPrompt(text){text=text.trim();if(!text||busy)return;const cloudEndpoint=getCloudEndpoint();if(!cloudEndpoint&&!engine&&!cpuEngine){go("settings");toast("先にクラウドAIの接続先URLを設定してください");return}if(!cloudEndpoint&&!engine&&!cpuEngine){const ok=await loadModel();if(!ok)return}busy=true;$("sendBtn").disabled=true;addMessage("user",text);$("promptInput").value="";setStatus("回答中","busy");try{const messages=[{role:"system",content:"あなたはAev0rnJP AI Hubの日本語優先アシスタントです。特に指定がなければ、自然で読みやすい日本語で回答してください。ユーザーが別の言語を指定した場合はその言語を使ってください。明確かつ正確に回答し、不確かなことは不確かだと明示してください。"} ,...history.slice(-16).map(m=>({role:m.role,content:m.content}))];let answer;if(cloudEndpoint){const response=await fetch(cloudEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:messages.slice(-18),max_tokens:700})});const payload=await response.json().catch(()=>({}));if(!response.ok)throw Error(payload.error||("HTTP "+response.status));answer=payload.answer||payload.choices?.[0]?.message?.content||""}else if(cpuEngine){const out=await cpuEngine(messages,{max_new_tokens:500,do_sample:true,temperature:.7});const generated=out?.[0]?.generated_text;answer=Array.isArray(generated)?(generated.filter(m=>m.role==="assistant").slice(-1)[0]?.content||""):typeof generated==="string"?generated:""}else{const result=await engine.chat.completions.create({messages,temperature:.7,max_tokens:900});answer=result.choices?.[0]?.message?.content||""}answer=answer||"回答を生成できませんでした。";addMessage("assistant",answer);setStatus(cloudEndpoint?"クラウドAI接続中":"準備完了","ready")}catch(e){addMessage("assistant","回答生成中にエラーが発生しました: "+(e?.message||e));setStatus("エラー")}finally{busy=false;$("sendBtn").disabled=false}}
 $("chatForm").addEventListener("submit",e=>{e.preventDefault();sendPrompt($("promptInput").value)});$("promptInput").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();$("chatForm").requestSubmit()}});
 document.querySelectorAll("[data-prompt]").forEach(b=>b.addEventListener("click",()=>{go("chat");$("promptInput").value=b.dataset.prompt;$("promptInput").focus()}));
 $("clearBtn").addEventListener("click",()=>{if(confirm("画面の会話履歴を消去しますか？")){$("chatlog").replaceChildren();history=[];localStorage.removeItem("aev0rn-ai-history");$("chatlog").innerHTML='<div class="welcome"><div class="orb">✧</div><h3>会話を始めましょう</h3><p>ローカルAIモデルを読み込んでメッセージを送信してください。</p><button class="btn primary" id="againLoad">AIモデルを読み込む</button></div>';$("againLoad").onclick=loadModel;toast("会話履歴を消去しました")}});

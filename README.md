@@ -1,36 +1,36 @@
 # Aev0rnJP AI Hub
 
-Dark, responsive, browser-first AI workspace intended for GitHub Pages.
+**日本語の説明はこちらです。** 詳しい説明は [日本語版 README](README.ja.md) をご覧ください。  
+**English documentation:** [README in English](README.en.md)
 
-## Features
-- Local AI chat through WebLLM when WebGPU is available.
-- Lightweight code editor with copy and download actions.
-- Browser-side reading for text, Markdown, CSV, JSON, and source files.
-- PDF text extraction using PDF.js (requires loading the library online).
-- Web search by opening DuckDuckGo or Google in a separate tab.
-- Optional local chat history, JSON export, installable PWA manifest, and service-worker app-shell cache.
-- Responsive layout for phones and desktop browsers.
-- No image generation feature and no custom backend.
+スマートフォンと PC に対応した、ダークテーマのブラウザー向け AI ワークスペースです。GitHub Pages で公開できる静的 Web アプリとして構成されています。
 
-## Publish with GitHub Pages
-1. Open repository **Settings → Pages**.
-2. Under **Build and deployment**, choose **Deploy from a branch**.
-3. Select branch **main** and folder **/(root)**, then save.
-4. Wait for the deployment status and open the published URL.
+## 主な機能
 
-## Local AI requirements
-The local model feature requires a compatible browser with WebGPU and sufficient free RAM/GPU memory. The app loads WebLLM and the selected model from external CDNs/model hosting; the first run may require a large download. Model support can vary by browser, GPU, drivers, and the upstream model catalog. If initialization fails, code editing, file viewing, and external search remain available.
+- WebGPU 対応環境でのブラウザー内 AI チャット（WebLLM）
+- コードの作成・編集、コピー、ファイル保存
+- テキスト、Markdown、CSV、JSON、ソースコードなどのファイル閲覧
+- PDF.js を利用した PDF のテキスト抽出
+- DuckDuckGo または Google を開く Web 検索
+- 任意のチャット履歴保存と JSON エクスポート
+- PWA マニフェスト、Service Worker によるアプリ画面のキャッシュ
+- スマートフォン・PC 向けのレスポンシブ表示
+- 画像生成機能および独自バックエンドはありません
 
-## Honest limitations
-- This is a static website. There is no backend, private API, or server-side search integration.
-- Search opens an external search engine; it does not fetch or summarize results automatically.
-- The service worker caches the app shell only. It does not guarantee that model files or external libraries are available offline.
-- PDF parsing requires an online download of PDF.js on first use. Scanned-image PDFs do not automatically get OCR.
-- Chat history is stored in browser localStorage only when enabled. Avoid storing sensitive information on shared devices.
-- Local AI output can be inaccurate; verify important information.
+## GitHub Pages で公開する方法
 
-## Privacy
-No custom application server receives chat messages. When using local AI, prompts are processed by the model in the browser after its model assets have been downloaded. Requests to external CDNs and search engines are subject to those providers' own policies.
+1. GitHub リポジトリの **Settings → Pages** を開きます。
+2. **Build and deployment** の **Source** で **Deploy from a branch** を選びます。
+3. Branch を **main**、フォルダーを **/(root)** に設定して保存します。
+4. デプロイ完了後、Pages 設定画面に表示された URL を開きます。
 
-## License
-Choose and add a license before redistributing this project.
+## 動作上の注意
+
+AI チャットには WebGPU 対応ブラウザーと十分なメモリーが必要です。初回は外部 CDN やモデル配信元からライブラリー・AI モデルをダウンロードするため、時間がかかることがあります。完全なオフライン動作は保証されません。
+
+Web 検索は外部検索エンジンを開く機能であり、検索結果の自動取得・要約は行いません。PDF の読み込みには初回に PDF.js のオンライン取得が必要で、スキャン画像の OCR は行いません。AI の回答は誤ることがあるため、重要な情報は確認してください。
+
+## ドキュメント
+
+- [日本語版 README（詳細）](README.ja.md)
+- [English README](README.en.md)

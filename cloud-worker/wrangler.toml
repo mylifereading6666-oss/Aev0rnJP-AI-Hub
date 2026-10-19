@@ -1,0 +1,6 @@
+name = "aev0rn-jp-ai-hub"
+main = "src/index.js"
+compatibility_date = "2026-10-19"
+
+[ai]
+binding = "AI"

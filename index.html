@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080b12">
+<meta name="description" content="Aev0rnJP AI Hub — privacy-first, browser-based AI workspace.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Aev0rnJP AI Hub</title>
+<style>
+:root{color-scheme:dark;--bg:#080b12;--panel:#0f1420;--panel2:#131b2a;--line:#222d41;--text:#eaf1ff;--muted:#8b9ab2;--cyan:#57e6ff;--purple:#a78bfa;--green:#67f0b1;--danger:#ff7e9a;--radius:18px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -20%,#18274b 0,transparent 45%),var(--bg);color:var(--text);min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer;color:inherit}.shell{display:grid;grid-template-columns:252px minmax(0,1fr);min-height:100vh;max-width:1600px;margin:auto}.side{border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column;gap:24px;background:#090d15c9}.brand{display:flex;gap:12px;align-items:center;padding:0 8px}.logo{width:42px;height:42px;filter:drop-shadow(0 0 14px #57e6ff45)}.brand strong{display:block;font-size:14px;letter-spacing:.02em}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.nav{display:grid;gap:8px}.nav button{border:1px solid transparent;background:transparent;text-align:left;padding:12px 14px;border-radius:12px;color:var(--muted);display:flex;align-items:center;gap:12px}.nav button.active,.nav button:hover{background:#172235;border-color:#273954;color:var(--text)}.nav .sym{width:20px;text-align:center;color:var(--cyan)}.sidefoot{margin-top:auto;padding:14px;border:1px solid var(--line);border-radius:14px;background:#0c121d}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid #25445a;border-radius:99px;padding:6px 10px;color:#9cecff;font-size:11px}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}main{min-width:0;padding:28px clamp(16px,4vw,56px) 42px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);font-weight:700}.top h1{font-size:clamp(23px,3vw,34px);margin:7px 0 0;letter-spacing:-.04em}.top p{color:var(--muted);margin:8px 0 0;font-size:13px}.top-actions{display:flex;gap:8px;align-items:center}.btn{border:1px solid var(--line);background:var(--panel2);padding:10px 14px;border-radius:11px;font-size:12px;font-weight:650;transition:.15s}.btn:hover{border-color:#4b6c95;transform:translateY(-1px)}.btn.primary{background:linear-gradient(110deg,#167e9c,#5545a7);border-color:#5b98c7}.btn.ghost{background:transparent}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:22px}.metric,.panel,.feature{background:linear-gradient(145deg,#111a29eF,#0d121d);border:1px solid var(--line);border-radius:var(--radius)}.metric{padding:16px}.metric .label{font-size:11px;color:var(--muted)}.metric strong{display:block;margin-top:9px;font-size:15px}.metric small{display:block;margin-top:5px;color:var(--muted);font-size:11px}.panel{padding:clamp(16px,2.4vw,24px);margin-bottom:16px}.panelhead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:18px}.panel h2{font-size:16px;margin:0}.panelhead p{font-size:12px;color:var(--muted);margin:7px 0 0;line-height:1.6}.status{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:6px 9px;white-space:nowrap}.status.ready{color:var(--green);border-color:#235742}.status.busy{color:#ffe19a;border-color:#65542c}.chatlog{min-height:220px;max-height:420px;overflow:auto;display:flex;flex-direction:column;gap:12px;padding:4px 2px 16px}.welcome{border:1px dashed #2b3b53;border-radius:15px;padding:25px;text-align:center;color:var(--muted);margin:auto;max-width:520px}.welcome .orb{font-size:28px;color:var(--cyan);text-shadow:0 0 25px #57e6ff80}.welcome h3{color:var(--text);margin:10px 0 6px}.welcome p{font-size:12px;line-height:1.7;margin:0}.msg{max-width:90%;padding:13px 15px;border-radius:14px;line-height:1.65;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.msg.user{align-self:flex-end;background:#17384b;border:1px solid #265d75}.msg.ai{align-self:flex-start;background:#151e2c;border:1px solid #28364a}.msg .role{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:5px}.composer{display:flex;gap:10px;align-items:flex-end;border:1px solid #2a3a50;border-radius:15px;background:#090e18;padding:10px}.composer textarea{flex:1;min-width:0;resize:vertical;min-height:48px;max-height:180px;border:0;outline:0;background:transparent;color:var(--text);padding:10px;font-size:13px}.composer button{align-self:stretch;min-width:84px}.hint{font-size:10px;color:var(--muted);margin-top:10px;line-height:1.6}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.feature{padding:18px}.feature .ico{font-size:20px;color:var(--cyan)}.feature h3{font-size:14px;margin:12px 0 6px}.feature p{font-size:12px;color:var(--muted);line-height:1.65;margin:0 0 14px}.field{display:grid;gap:7px;margin:12px 0}.field label{font-size:12px;color:#bac8dd}.field input,.field select,.field textarea,.codearea{width:100%;background:#080d16;border:1px solid #29374b;border-radius:11px;padding:12px;color:var(--text);outline:none}.field input:focus,.field textarea:focus,.field select:focus,.codearea:focus{border-color:#58b9d8}.field textarea{min-height:150px;resize:vertical}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.filebox{border:1px dashed #344861;padding:20px;border-radius:14px;text-align:center;color:var(--muted);font-size:12px}.filebox input{max-width:100%;margin-top:12px}.filecontent{white-space:pre-wrap;overflow-wrap:anywhere;background:#080d16;border:1px solid var(--line);border-radius:12px;padding:14px;max-height:340px;overflow:auto;font:12px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace}.codearea{font:12px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;min-height:300px;resize:vertical}.note{border-left:2px solid var(--purple);padding:10px 13px;background:#161328;border-radius:0 10px 10px 0;color:#c6bdf3;font-size:11px;line-height:1.6}.hidden{display:none!important}.footer{color:#66758d;font-size:10px;line-height:1.8;padding:10px 2px}.mobilebar{display:none}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#19263a;border:1px solid #3b5677;border-radius:12px;padding:11px 16px;font-size:12px;box-shadow:0 12px 35px #0008;z-index:20;max-width:90vw}.progress{height:5px;border-radius:9px;background:#1a2638;overflow:hidden;margin:12px 0}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .25s}.muted{color:var(--muted)}@media(max-width:800px){.shell{display:block}.side{display:none}main{padding:20px 14px 100px}.top{align-items:flex-start}.top-actions .btn{padding:9px;font-size:11px}.cards{gap:8px}.metric{padding:12px}.metric strong{font-size:12px}.grid2{grid-template-columns:1fr}.mobilebar{position:fixed;z-index:10;display:flex;bottom:0;left:0;right:0;padding:8px max(8px,env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom));background:#090d15ed;backdrop-filter:blur(18px);border-top:1px solid var(--line);justify-content:space-around}.mobilebar button{display:grid;justify-items:center;gap:4px;border:0;background:transparent;color:var(--muted);font-size:10px;padding:6px 10px}.mobilebar button.active{color:var(--cyan)}.mobilebar span{font-size:17px}.chatlog{min-height:190px}.msg{max-width:96%}.top h1{font-size:25px}}@media(min-width:801px){.mobilebar{display:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="side">
+<div class="brand"><img class="logo" src="./icon.svg" alt=""><div><strong>Aev0rnJP AI Hub</strong><small>YOUR PRIVATE AI WORKSPACE</small></div></div>
+<nav class="nav" aria-label="メインメニュー">
+<button class="active" data-view="chat"><span class="sym">◈</span>AI チャット</button>
+<button data-view="code"><span class="sym">⌘</span>コードワークスペース</button>
+<button data-view="files"><span class="sym">▤</span>ファイル解析</button>
+<button data-view="search"><span class="sym">⌕</span>ウェブ検索</button>
+<button data-view="settings"><span class="sym">⚙</span>モデル・設定</button>
+</nav>
+<div class="sidefoot"><span class="pill"><span class="dot"></span> BROWSER-FIRST</span><p style="font-size:11px;color:var(--muted);line-height:1.7;margin:12px 0 0">会話はこの端末内に保存できます。モデル実行時は端末の性能とブラウザー対応状況に依存します。</p></div>
+</aside>
+<main>
+<header class="top"><div><div class="eyebrow">LOCAL INTELLIGENCE / 01</div><h1 id="pageTitle">AI ワークスペース</h1><p id="pageSub">あなたの端末で動くAIを中心に、作業をひとつの場所へ。</p></div><div class="top-actions"><button class="btn ghost" id="installBtn" hidden>アプリをインストール</button><button class="btn" id="clearBtn">会話を消去</button></div></header>
+<section class="cards" aria-label="状態">
+<div class="metric"><div class="label">AI ENGINE</div><strong id="engineMetric">未起動</strong><small id="engineSub">端末内モデル</small></div>
+<div class="metric"><div class="label">CONNECTION</div><strong id="connectionMetric">確認中</strong><small>ネットワーク状態</small></div>
+<div class="metric"><div class="label">PRIVACY</div><strong>端末内優先</strong><small>自動送信する独自サーバーなし</small></div>
+</section>
+
+<section id="view-chat" class="view">
+<div class="panel">
+<div class="panelhead"><div><h2>AI チャット</h2><p>端末内モデルを読み込み、文章作成・説明・アイデア整理などに使えます。</p></div><span class="status" id="modelStatus">モデル未起動</span></div>
+<div class="chatlog" id="chatlog" aria-live="polite"><div class="welcome"><div class="orb">✧</div><h3>何から始めますか？</h3><p>ローカルAIモデルを読み込むと、この端末上で会話できます。初回はモデルデータのダウンロードが必要です。</p><div class="row" style="justify-content:center;margin-top:16px"><button class="btn primary" id="loadModelBtn">AIモデルを読み込む</button><button class="btn" data-prompt="JavaScriptを学ぶための初心者向けロードマップを作ってください。">学習計画を作る</button></div></div></div>
+<div class="progress" id="loadProgress" hidden><span id="loadBar"></span></div><div id="loadMessage" class="hint" role="status"></div>
+<form id="chatForm" class="composer"><textarea id="promptInput" placeholder="メッセージを入力…（Enterで送信 / Shift+Enterで改行）" aria-label="メッセージ"></textarea><button class="btn primary" id="sendBtn" type="submit">送信 ↗</button></form>
+<div class="hint">ローカルモデルは端末のメモリ・GPU・ブラウザーに左右されます。回答は誤ることがあります。個人情報や重要な判断は確認してください。</div>
+</div>
+</section>
+
+<section id="view-code" class="view hidden">
+<div class="panel"><div class="panelhead"><div><h2>コードワークスペース</h2><p>コードを書き、編集し、クリップボードへコピーまたはファイルとして保存します。AIによる編集はチャットにコードを貼り付けて依頼できます。</p></div><span class="status">端末内編集</span></div>
+<div class="field"><label for="codeName">ファイル名</label><input id="codeName" value="main.js"></div><div class="field"><label for="codeInput">コードエディター</label><textarea id="codeInput" class="codearea" spellcheck="false" aria-label="コードエディター" placeholder="// コードを入力してください"></textarea></div>
+<div class="row"><button class="btn primary" id="copyCodeBtn">コードをコピー</button><button class="btn" id="downloadCodeBtn">ファイルを保存</button><button class="btn" id="sendCodeBtn">コードをAIに相談</button><button class="btn" id="clearCodeBtn">クリア</button></div>
+</div>
+<div class="note">このエディターは軽量なテキストエディターです。構文ハイライトや自動実行は行いません。信頼できないコードをそのまま実行しないでください。</div>
+</section>
+
+<section id="view-files" class="view hidden">
+<div class="panel"><div class="panelhead"><div><h2>ファイル解析</h2><p>対応ファイルをブラウザーで読み込み、内容を確認・コピーしたりAIへの質問に利用できます。</p></div></div>
+<div class="filebox">ここにファイルを選択<br><input id="fileInput" type="file" accept=".txt,.md,.csv,.json,.js,.ts,.html,.css,.xml,.yaml,.yml,.log,.pdf,.py,.java,.c,.cpp,.sh,.toml"></div>
+<div id="fileInfo" class="hint">テキスト、Markdown、CSV、JSON、ソースコード、PDFに対応（PDFはオンラインのPDF解析ライブラリを読み込みます）。</div>
+<div id="filePreviewWrap" class="hidden"><div class="panelhead" style="margin-top:18px"><h2 id="fileTitle">読み込み結果</h2><div class="row"><button class="btn" id="copyFileBtn">内容をコピー</button><button class="btn primary" id="askFileBtn">この内容をAIに質問</button></div></div><pre id="filePreview" class="filecontent"></pre></div>
+</div><div class="note">ファイル内容はブラウザー内で処理します。大きなファイルやスキャン画像だけのPDF、暗号化PDFは解析できない場合があります。</div>
+</section>
+
+<section id="view-search" class="view hidden">
+<div class="panel"><div class="panelhead"><div><h2>ウェブ検索</h2><p>検索エンジンで最新情報を探します。検索結果の閲覧は外部サイトで行われます。</p></div><span class="status">オンラインが必要</span></div>
+<form id="searchForm"><div class="field"><label for="searchInput">検索キーワード</label><input id="searchInput" placeholder="例：WebGPU 対応ブラウザー 最新情報"></div><div class="row"><button class="btn primary" type="submit">DuckDuckGoで検索 ↗</button><button class="btn" type="button" id="searchGoogleBtn">Googleで検索 ↗</button><button class="btn" type="button" id="searchAskBtn">検索内容をAIに相談</button></div></form>
+<div class="note" style="margin-top:18px">この静的サイトは検索APIや独自バックエンドを持たないため、検索結果を自動取得・要約する機能はありません。検索ページを開いて結果を確認してください。APIキーを公開JavaScriptに埋め込む設計は採用していません。</div>
+</div></section>
+
+<section id="view-settings" class="view hidden">
+<div class="panel"><div class="panelhead"><div><h2>モデル・設定</h2><p>端末に合わせてモデルを選びます。モデルは初回読み込み時にダウンロードされ、通信量と保存容量を使います。</p></div></div>
+<div class="field"><label for="modelSelect">ローカルAIモデル</label><select id="modelSelect"><option value="Llama-3.2-1B-Instruct-q4f16_1-MLC">Llama 3.2 1B Instruct（軽量・英語中心）</option><option value="Qwen2.5-1.5B-Instruct-q4f16_1-MLC">Qwen 2.5 1.5B Instruct（多言語向け）</option></select></div>
+<div class="row"><button class="btn primary" id="settingsLoadBtn">モデルを読み込む</button><button class="btn" id="stopModelBtn">モデルを解放</button></div>
+<div class="field"><label for="memoryToggle">会話履歴</label><div class="row"><input type="checkbox" id="memoryToggle" checked><span class="muted" style="font-size:12px">このブラウザーに会話を保存</span></div></div>
+<div class="row"><button class="btn" id="exportChatBtn">会話をJSONで保存</button><button class="btn" id="deleteChatBtn">保存済み会話を削除</button></div>
+</div>
+<div class="panel"><h2>端末の対応状況</h2><div id="capabilities" class="hint">確認中…</div><div class="note" style="margin-top:14px">WebGPU対応端末でも、GPUドライバーや利用可能メモリによりモデルが起動しない場合があります。対応しない場合はコード編集・ファイル閲覧・外部検索をご利用ください。</div></div>
+<div class="panel"><h2>プライバシーとオフライン</h2><p class="hint">独自サーバーは使用しません。AIモデルはWebLLMライブラリとモデル配信元からダウンロードされます。ブラウザー保存領域を消去すると履歴やキャッシュも失われることがあります。オフラインでは、キャッシュ済みの画面とローカル機能が中心となり、初回モデル取得・ウェブ検索は利用できません。</p></div>
+</section>
+<div class="footer">Aev0rnJP AI Hub · Browser-first · No image generation · GitHub Pages compatible<br>AIモデル・外部ライブラリの利用条件は各提供元に従います。</div>
+</main>
+</div>
+<nav class="mobilebar" aria-label="モバイルメニュー"><button class="active" data-view="chat"><span>◈</span>チャット</button><button data-view="code"><span>⌘</span>コード</button><button data-view="files"><span>▤</span>ファイル</button><button data-view="search"><span>⌕</span>検索</button><button data-view="settings"><span>⚙</span>設定</button></nav>
+<div id="toast" class="toast hidden" role="status"></div>
+<script type="module">
+const $=id=>document.getElementById(id);
+let engine=null, engineLoading=false, busy=false, currentFileText="", currentFileName="";
+let history=[];
+const titles={chat:["AI ワークスペース","あなたの端末で動くAIを中心に、作業をひとつの場所へ。"],code:["コードワークスペース","コードを編集し、保存し、AIと一緒に考える。"],files:["ファイル解析","ファイルを読み込み、内容を確認して質問する。"],search:["ウェブ検索","検索エンジンで最新情報を探す。"],settings:["モデル・設定","端末に合った実行環境とプライバシーを設定する。"]};
+function toast(s){const t=$("toast");t.textContent=s;t.classList.remove("hidden");clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.add("hidden"),3000)}
+function setStatus(s,kind=""){const e=$("modelStatus");e.textContent=s;e.className="status "+kind;$("engineMetric").textContent=s}
+function go(view){document.querySelectorAll(".view").forEach(e=>e.classList.add("hidden"));$("view-"+view).classList.remove("hidden");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===view));$("pageTitle").textContent=titles[view][0];$("pageSub").textContent=titles[view][1];}
+document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.view)));
+$("connectionMetric").textContent=navigator.onLine?"オンライン":"オフライン";
+addEventListener("online",()=>{$("connectionMetric").textContent="オンライン"});addEventListener("offline",()=>{$("connectionMetric").textContent="オフライン"});
+const hasWebGPU=!!navigator.gpu;
+$("capabilities").textContent="WebGPU: "+(hasWebGPU?"利用可能（実際の起動はGPU/ドライバー依存）":"未検出")+"\nメモリ情報: "+(navigator.deviceMemory?navigator.deviceMemory+" GB（推定）":"ブラウザーから取得できません")+"\n画面: "+innerWidth+" × "+innerHeight;
+if(!hasWebGPU){$("engineSub").textContent="WebGPU未検出。AIモデルが起動しない可能性があります"}
+function saveHistory(){if($("memoryToggle").checked){try{localStorage.setItem("aev0rn-ai-history",JSON.stringify(history.slice(-80)))}catch(e){toast("端末の保存容量が不足しています")}}}
+function addMessage(role,content,save=true){const log=$("chatlog");const welcome=log.querySelector(".welcome");if(welcome)welcome.remove();const el=document.createElement("div");el.className="msg "+(role==="user"?"user":"ai");const r=document.createElement("div");r.className="role";r.textContent=role==="user"?"YOU":"AEV0RN AI";const c=document.createElement("div");c.textContent=content;el.append(r,c);log.append(el);log.scrollTop=log.scrollHeight;if(save){history.push({role:role==="user"?"user":"assistant",content});saveHistory()}}
+function restoreHistory(){try{history=JSON.parse(localStorage.getItem("aev0rn-ai-history")||"[]");history.forEach(m=>addMessage(m.role==="user"?"user":"assistant",m.content,false))}catch{history=[]}}
+restoreHistory();
+async function loadModel(){if(engine)return true;if(engineLoading){toast("モデルを読み込み中です");return false}if(!navigator.gpu){toast("このブラウザーではWebGPUが見つかりません。コード・ファイル機能は利用できます");return false}engineLoading=true;setStatus("読み込み中","busy");$("loadProgress").hidden=false;$("loadBar").style.width="0%";$("loadMessage").textContent="AIライブラリを読み込んでいます。初回は数百MB以上のダウンロードが発生する場合があります。タブを閉じずにお待ちください。";["loadModelBtn","settingsLoadBtn"].forEach(id=>$(id).disabled=true);
+try{const {CreateMLCEngine}=await import("https://esm.run/@mlc-ai/web-llm");const model=$("modelSelect").value;engine=await CreateMLCEngine(model,{initProgressCallback:p=>{$("loadBar").style.width=Math.round((p.progress||0)*100)+"%";$("loadMessage").textContent=p.text||"モデルを準備中…"}});setStatus("準備完了","ready");$("engineSub").textContent=model;$("loadMessage").textContent="モデルの準備ができました。メッセージを送信できます。";$("loadProgress").hidden=true;toast("ローカルAIの準備ができました");return true}catch(e){engine=null;setStatus("起動失敗");$("loadMessage").textContent="モデルを起動できませんでした: "+(e?.message||e)+"。対応ブラウザー・GPU・空きメモリ・通信を確認してください。";$("loadProgress").hidden=true;toast("モデルの読み込みに失敗しました");return false}finally{engineLoading=false;["loadModelBtn","settingsLoadBtn"].forEach(id=>$(id).disabled=false)}}
+$("loadModelBtn").addEventListener("click",loadModel);$("settingsLoadBtn").addEventListener("click",loadModel);
+$("stopModelBtn").addEventListener("click",async()=>{if(engine){try{await engine.unload()}catch{}engine=null;setStatus("未起動");$("engineSub").textContent="端末内モデル";toast("モデルを解放しました")}else toast("モデルは起動していません")});
+async function sendPrompt(text){text=text.trim();if(!text||busy)return;if(!engine){const ok=await loadModel();if(!ok)return}busy=true;$("sendBtn").disabled=true;addMessage("user",text);$("promptInput").value="";setStatus("回答中","busy");try{const messages=[{role:"system",content:"あなたはAev0rnJP AI Hubの役に立つアシスタントです。ユーザーの言語で、明確かつ正確に回答してください。必要なら不確実性を明示してください。"} ,...history.slice(-16).map(m=>({role:m.role,content:m.content}))];const result=await engine.chat.completions.create({messages,temperature:.7,max_tokens:900});const answer=result.choices?.[0]?.message?.content||"回答を生成できませんでした。";addMessage("assistant",answer);setStatus("準備完了","ready")}catch(e){addMessage("assistant","回答生成中にエラーが発生しました: "+(e?.message||e));setStatus("エラー")}finally{busy=false;$("sendBtn").disabled=false}}
+$("chatForm").addEventListener("submit",e=>{e.preventDefault();sendPrompt($("promptInput").value)});$("promptInput").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();$("chatForm").requestSubmit()}});
+document.querySelectorAll("[data-prompt]").forEach(b=>b.addEventListener("click",()=>{go("chat");$("promptInput").value=b.dataset.prompt;$("promptInput").focus()}));
+$("clearBtn").addEventListener("click",()=>{if(confirm("画面の会話履歴を消去しますか？")){$("chatlog").replaceChildren();history=[];localStorage.removeItem("aev0rn-ai-history");$("chatlog").innerHTML='<div class="welcome"><div class="orb">✧</div><h3>会話を始めましょう</h3><p>ローカルAIモデルを読み込んでメッセージを送信してください。</p><button class="btn primary" id="againLoad">AIモデルを読み込む</button></div>';$("againLoad").onclick=loadModel;toast("会話履歴を消去しました")}});
+$("deleteChatBtn").addEventListener("click",()=>{localStorage.removeItem("aev0rn-ai-history");history=[];toast("保存済み会話を削除しました")});
+$("memoryToggle").checked=localStorage.getItem("aev0rn-save-history")!=="false";$("memoryToggle").addEventListener("change",()=>{localStorage.setItem("aev0rn-save-history",$("memoryToggle").checked?"true":"false");if(!$("memoryToggle").checked)localStorage.removeItem("aev0rn-ai-history");toast("会話履歴の設定を更新しました")});
+$("exportChatBtn").addEventListener("click",()=>downloadBlob(JSON.stringify(history,null,2),"aev0rn-chat.json","application/json"));
+function downloadBlob(content,name,type="text/plain"){const a=document.createElement("a");const url=URL.createObjectURL(new Blob([content],{type}));a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+$("copyCodeBtn").onclick=async()=>{try{await navigator.clipboard.writeText($("codeInput").value);toast("コードをコピーしました")}catch{toast("コピーできません。コードを選択してコピーしてください")}};
+$("downloadCodeBtn").onclick=()=>downloadBlob($("codeInput").value,$("codeName").value.trim()||"code.txt");
+$("clearCodeBtn").onclick=()=>{$("codeInput").value=""};
+$("sendCodeBtn").onclick=()=>{go("chat");$("promptInput").value="次のコードをレビューし、問題点と改善案を示してください。\n\n"+$("codeInput").value;$("promptInput").focus()};
+$("fileInput").addEventListener("change",async e=>{const f=e.target.files?.[0];if(!f)return;currentFileName=f.name;$("fileInfo").textContent="読み込み中: "+f.name+" ("+Math.round(f.size/1024)+" KB)";try{let text;if(f.name.toLowerCase().endsWith(".pdf")){if(!navigator.onLine)throw Error("PDFライブラリの取得にはオンライン接続が必要です");const pdfjs=await import("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs");pdfjs.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";const pdf=await pdfjs.getDocument({data:await f.arrayBuffer()}).promise;let pages=[];for(let i=1;i<=Math.min(pdf.numPages,80);i++){const page=await pdf.getPage(i);const c=await page.getTextContent();pages.push("[ページ "+i+"]\n"+c.items.map(x=>x.str).join(" "))}text=pages.join("\n\n");if(pdf.numPages>80)text+="\n\n（80ページまで読み込みました）"}else text=await f.text();if(text.length>250000)text=text.slice(0,250000)+"\n\n（表示・利用のため先頭250,000文字に制限しました）";currentFileText=text;$("fileTitle").textContent=f.name;$("filePreview").textContent=text;$("filePreviewWrap").classList.remove("hidden");$("fileInfo").textContent="読み込み完了: "+f.name+" · "+text.length.toLocaleString()+" 文字"}catch(err){$("fileInfo").textContent="読み込み失敗: "+(err?.message||err);currentFileText=""}});
+$("copyFileBtn").onclick=async()=>{try{await navigator.clipboard.writeText(currentFileText);toast("ファイル内容をコピーしました")}catch{toast("コピーに失敗しました")}};
+$("askFileBtn").onclick=()=>{go("chat");$("promptInput").value="次のファイル内容を要約し、重要な点を整理してください。ファイル名: "+currentFileName+"\n\n"+currentFileText.slice(0,12000);$("promptInput").focus();toast("長文は先頭部分をAIに送ります")};
+$("searchForm").addEventListener("submit",e=>{e.preventDefault();const q=$("searchInput").value.trim();if(q)openSearch("https://duckduckgo.com/?q=",q)});
+$("searchGoogleBtn").onclick=()=>{const q=$("searchInput").value.trim();if(q)openSearch("https://www.google.com/search?q=",q)};
+function openSearch(base,q){window.open(base+encodeURIComponent(q),"_blank","noopener,noreferrer")}
+$("searchAskBtn").onclick=()=>{const q=$("searchInput").value.trim();if(q){go("chat");$("promptInput").value="次の検索テーマについて、知っている範囲で説明してください。不確かな最新情報は不確かだと明記してください。実際の検索結果はまだ取得していません。\n\n"+q;$("promptInput").focus()}};
+if("serviceWorker"in navigator&&location.protocol.startsWith("http"))addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+let installPrompt=null;addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e;$("installBtn").hidden=false});$("installBtn").onclick=async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$("installBtn").hidden=true}else toast("ブラウザーのメニューからホーム画面に追加できます")};
+</script>
+</body></html>

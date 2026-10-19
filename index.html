@@ -132,7 +132,7 @@ $("copyFileBtn").onclick=async()=>{try{await navigator.clipboard.writeText(curre
 $("askFileBtn").onclick=()=>{go("chat");$("promptInput").value="次のファイル内容を要約し、重要な点を整理してください。ファイル名: "+currentFileName+"\n\n"+currentFileText.slice(0,12000);$("promptInput").focus();toast("長文は先頭部分をAIに送ります")};
 $("searchForm").addEventListener("submit",e=>{e.preventDefault();const q=$("searchInput").value.trim();if(q)openSearch("https://duckduckgo.com/?q=",q)});
 $("searchGoogleBtn").onclick=()=>{const q=$("searchInput").value.trim();if(q)openSearch("https://www.google.com/search?q=",q)};
-function openSearch(base,q){window.open(base+encodeURIComponent(q),"_blank","noopener,noreferrer")}
+function openSearch(base,q){const url=base+encodeURIComponent(q);location.href=url}
 $("searchAskBtn").onclick=()=>{const q=$("searchInput").value.trim();if(q){go("chat");$("promptInput").value="次の検索テーマについて、知っている範囲で説明してください。不確かな最新情報は不確かだと明記してください。実際の検索結果はまだ取得していません。\n\n"+q;$("promptInput").focus()}};
 if("serviceWorker"in navigator&&location.protocol.startsWith("http"))addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 let installPrompt=null;addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e;$("installBtn").hidden=false});$("installBtn").onclick=async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$("installBtn").hidden=true}else toast("ブラウザーのメニューからホーム画面に追加できます")};

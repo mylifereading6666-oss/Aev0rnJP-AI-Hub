@@ -1,4 +1,4 @@
-const CACHE="aev0rn-ai-hub-v5";
+const CACHE="aev0rn-ai-hub-v6";
 const CORE=["./","./index.html","./manifest.webmanifest","./icon.svg"];
 self.addEventListener("install",event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));

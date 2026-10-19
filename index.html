@@ -88,7 +88,8 @@
 const $=id=>document.getElementById(id);
 let engine=null, cpuEngine=null, engineMode="", engineLoading=false, busy=false, currentFileText="", currentFileName="";
 let history=[];
-const cloudEndpointInput=$("cloudEndpoint");\nfunction getCloudEndpoint(){return (localStorage.getItem("aev0rn-cloud-endpoint")||"").trim()}
+const cloudEndpointInput=$("cloudEndpoint");
+function getCloudEndpoint(){return (localStorage.getItem("aev0rn-cloud-endpoint")||"").trim()}
 function getGeminiConfig(){try{return JSON.parse(localStorage.getItem("aev0rn-firebase-config")||"null")}catch{return null}}
 let geminiRuntime=null;
 async function getGeminiModel(config){if(geminiRuntime?.config?.appId===config.appId)return geminiRuntime;const [{initializeApp,getApps},{getAI,getGenerativeModel,GoogleAIBackend}]=await Promise.all([import("https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js"),import("https://www.gstatic.com/firebasejs/11.10.0/firebase-ai.js")]);const appName="aev0rn-gemini";const app=getApps().find(a=>a.name===appName)||initializeApp(config,appName);const ai=getAI(app,{backend:new GoogleAIBackend()});const model=getGenerativeModel(ai,{model:"gemini-2.5-flash"});geminiRuntime={config,app,model};return geminiRuntime}
